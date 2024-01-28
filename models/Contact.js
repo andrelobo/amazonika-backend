@@ -12,7 +12,7 @@ const ContactSchema = new mongoose.Schema({
   },
   city: {
     type: String,
-    required: [true, "city is required."],
+    required: [true, "cidade is required."],
   },
   email: {
     type: String,
@@ -22,13 +22,15 @@ const ContactSchema = new mongoose.Schema({
     type: Number,
     required: [true, "phone number is required."],
   },
-  price: [
-  
-    {
+  price: {
       type: Number,
       required: [true, "price is required."],
+    }, 
+    date: {
+      type: Date,
+      required: true,
     },
-  ],
+
   info: {
 
     type: String,
@@ -51,6 +53,7 @@ const validateContact = (data) => {
     city: Joi.string().min(4).max(50).required(),
     price: Joi.number().required(),
     info: Joi.string().min(4).max(200).required(),
+    date: Joi.date().required(),
   });
 
   return schema.validate(data);
@@ -60,4 +63,3 @@ module.exports = {
   validateContact,
   Contact,
 };
-;

@@ -12,7 +12,7 @@ router.post("/contact", auth, async (req, res) => {
     return res.status(400).json({ error: error.details[0].message });
   }
 
-  const { name, address, email, phone, city , price, info } = req.body;
+  const { name, address, email, phone, city , price, info, date } = req.body;
 
   try {
     const newContact = new Contact({
@@ -23,6 +23,7 @@ router.post("/contact", auth, async (req, res) => {
       city,
       price,
       info,
+      date,
       postedBy: req.user._id,
     });
     const result = await newContact.save();
